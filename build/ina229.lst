@@ -1,0 +1,647 @@
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"ina229.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "App/Src/ina229.c"
+  20              		.section	.text.INA229_Transfer,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	INA229_Transfer:
+  27              	.LVL0:
+  28              	.LFB134:
+   1:App/Src/ina229.c **** #include "ina229.h"
+   2:App/Src/ina229.c **** 
+   3:App/Src/ina229.c **** #define INA229_SPI_TIMEOUT_MS 10U
+   4:App/Src/ina229.c **** 
+   5:App/Src/ina229.c **** static INA229_Status INA229_Transfer(INA229_HandleTypeDef *handle,
+   6:App/Src/ina229.c ****                                       uint8_t *tx, uint8_t *rx, uint16_t length)
+   7:App/Src/ina229.c **** {
+  29              		.loc 1 7 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 7 1 is_stmt 0 view .LVU1
+  34 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 20
+  37              		.cfi_offset 4, -20
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 83B0     		sub	sp, sp, #12
+  43              	.LCFI1:
+  44              		.cfi_def_cfa_offset 32
+   8:App/Src/ina229.c ****     HAL_StatusTypeDef result;
+  45              		.loc 1 8 5 is_stmt 1 view .LVU2
+   9:App/Src/ina229.c **** 
+  10:App/Src/ina229.c ****     if (handle == NULL || handle->hspi == NULL || handle->cs_port == NULL ||
+  46              		.loc 1 10 5 view .LVU3
+  47              		.loc 1 10 8 is_stmt 0 view .LVU4
+  48 0004 28B3     		cbz	r0, .L3
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 2
+
+
+  49 0006 0F46     		mov	r7, r1
+  50 0008 1646     		mov	r6, r2
+  51 000a 1D46     		mov	r5, r3
+  52 000c 0446     		mov	r4, r0
+  53              		.loc 1 10 33 discriminator 1 view .LVU5
+  54 000e 0368     		ldr	r3, [r0]
+  55              	.LVL1:
+  56              		.loc 1 10 24 discriminator 1 view .LVU6
+  57 0010 0BB3     		cbz	r3, .L4
+  58              		.loc 1 10 57 discriminator 2 view .LVU7
+  59 0012 4068     		ldr	r0, [r0, #4]
+  60              	.LVL2:
+  61              		.loc 1 10 48 discriminator 2 view .LVU8
+  62 0014 08B3     		cbz	r0, .L5
+  11:App/Src/ina229.c ****         handle->cs_pin == 0U || tx == NULL || rx == NULL)
+  63              		.loc 1 11 15 view .LVU9
+  64 0016 2189     		ldrh	r1, [r4, #8]
+  65              	.LVL3:
+  10:App/Src/ina229.c ****         handle->cs_pin == 0U || tx == NULL || rx == NULL)
+  66              		.loc 1 10 75 discriminator 3 view .LVU10
+  67 0018 09B3     		cbz	r1, .L6
+  68              		.loc 1 11 30 view .LVU11
+  69 001a 17B3     		cbz	r7, .L7
+  70              		.loc 1 11 44 discriminator 1 view .LVU12
+  71 001c 1AB3     		cbz	r2, .L8
+  12:App/Src/ina229.c ****     {
+  13:App/Src/ina229.c ****         return INA229_INVALID_ARG;
+  14:App/Src/ina229.c ****     }
+  15:App/Src/ina229.c **** 
+  16:App/Src/ina229.c ****     HAL_GPIO_WritePin(handle->cs_port, handle->cs_pin, GPIO_PIN_RESET);
+  72              		.loc 1 16 5 is_stmt 1 view .LVU13
+  73 001e 0022     		movs	r2, #0
+  74              	.LVL4:
+  75              		.loc 1 16 5 is_stmt 0 view .LVU14
+  76 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  77              	.LVL5:
+  17:App/Src/ina229.c ****     result = HAL_SPI_TransmitReceive(handle->hspi, tx, rx, length, INA229_SPI_TIMEOUT_MS);
+  78              		.loc 1 17 5 is_stmt 1 view .LVU15
+  79              		.loc 1 17 14 is_stmt 0 view .LVU16
+  80 0024 0A23     		movs	r3, #10
+  81 0026 0093     		str	r3, [sp]
+  82 0028 2B46     		mov	r3, r5
+  83 002a 3246     		mov	r2, r6
+  84 002c 3946     		mov	r1, r7
+  85 002e 2068     		ldr	r0, [r4]
+  86 0030 FFF7FEFF 		bl	HAL_SPI_TransmitReceive
+  87              	.LVL6:
+  88 0034 0546     		mov	r5, r0
+  89              	.LVL7:
+  18:App/Src/ina229.c ****     HAL_GPIO_WritePin(handle->cs_port, handle->cs_pin, GPIO_PIN_SET);
+  90              		.loc 1 18 5 is_stmt 1 view .LVU17
+  91 0036 0122     		movs	r2, #1
+  92 0038 2189     		ldrh	r1, [r4, #8]
+  93 003a 6068     		ldr	r0, [r4, #4]
+  94 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  95              	.LVL8:
+  19:App/Src/ina229.c **** 
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 3
+
+
+  20:App/Src/ina229.c ****     if (result == HAL_OK)
+  96              		.loc 1 20 5 view .LVU18
+  97              		.loc 1 20 8 is_stmt 0 view .LVU19
+  98 0040 15B1     		cbz	r5, .L2
+  21:App/Src/ina229.c ****     {
+  22:App/Src/ina229.c ****         return INA229_OK;
+  23:App/Src/ina229.c ****     }
+  24:App/Src/ina229.c ****     return (result == HAL_TIMEOUT) ? INA229_TIMEOUT : INA229_ERROR;
+  99              		.loc 1 24 5 is_stmt 1 view .LVU20
+ 100              		.loc 1 24 53 is_stmt 0 view .LVU21
+ 101 0042 032D     		cmp	r5, #3
+ 102 0044 03D0     		beq	.L11
+ 103              		.loc 1 24 53 discriminator 2 view .LVU22
+ 104 0046 0125     		movs	r5, #1
+ 105              	.LVL9:
+ 106              	.L2:
+  25:App/Src/ina229.c **** }
+ 107              		.loc 1 25 1 view .LVU23
+ 108 0048 2846     		mov	r0, r5
+ 109 004a 03B0     		add	sp, sp, #12
+ 110              	.LCFI2:
+ 111              		.cfi_remember_state
+ 112              		.cfi_def_cfa_offset 20
+ 113              		@ sp needed
+ 114 004c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 115              	.LVL10:
+ 116              	.L11:
+ 117              	.LCFI3:
+ 118              		.cfi_restore_state
+  24:App/Src/ina229.c **** }
+ 119              		.loc 1 24 53 discriminator 1 view .LVU24
+ 120 004e 0225     		movs	r5, #2
+ 121              	.LVL11:
+  24:App/Src/ina229.c **** }
+ 122              		.loc 1 24 53 discriminator 1 view .LVU25
+ 123 0050 FAE7     		b	.L2
+ 124              	.LVL12:
+ 125              	.L3:
+  13:App/Src/ina229.c ****     }
+ 126              		.loc 1 13 16 view .LVU26
+ 127 0052 0325     		movs	r5, #3
+ 128 0054 F8E7     		b	.L2
+ 129              	.LVL13:
+ 130              	.L4:
+  13:App/Src/ina229.c ****     }
+ 131              		.loc 1 13 16 view .LVU27
+ 132 0056 0325     		movs	r5, #3
+ 133              	.LVL14:
+  13:App/Src/ina229.c ****     }
+ 134              		.loc 1 13 16 view .LVU28
+ 135 0058 F6E7     		b	.L2
+ 136              	.LVL15:
+ 137              	.L5:
+  13:App/Src/ina229.c ****     }
+ 138              		.loc 1 13 16 view .LVU29
+ 139 005a 0325     		movs	r5, #3
+ 140 005c F4E7     		b	.L2
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 4
+
+
+ 141              	.LVL16:
+ 142              	.L6:
+  13:App/Src/ina229.c ****     }
+ 143              		.loc 1 13 16 view .LVU30
+ 144 005e 0325     		movs	r5, #3
+ 145 0060 F2E7     		b	.L2
+ 146              	.L7:
+ 147 0062 0325     		movs	r5, #3
+ 148 0064 F0E7     		b	.L2
+ 149              	.L8:
+ 150 0066 0325     		movs	r5, #3
+ 151 0068 EEE7     		b	.L2
+ 152              		.cfi_endproc
+ 153              	.LFE134:
+ 155              		.section	.text.INA229_ReadReg16,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	INA229_ReadReg16
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 162              	INA229_ReadReg16:
+ 163              	.LVL17:
+ 164              	.LFB135:
+  26:App/Src/ina229.c **** 
+  27:App/Src/ina229.c **** INA229_Status INA229_ReadReg16(INA229_HandleTypeDef *handle, uint8_t reg, uint16_t *value)
+  28:App/Src/ina229.c **** {
+ 165              		.loc 1 28 1 is_stmt 1 view -0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 8
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		.loc 1 28 1 is_stmt 0 view .LVU32
+ 170 0000 10B5     		push	{r4, lr}
+ 171              	.LCFI4:
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 4, -8
+ 174              		.cfi_offset 14, -4
+ 175 0002 82B0     		sub	sp, sp, #8
+ 176              	.LCFI5:
+ 177              		.cfi_def_cfa_offset 16
+ 178 0004 1446     		mov	r4, r2
+  29:App/Src/ina229.c ****     uint8_t tx[3] = {0};
+ 179              		.loc 1 29 5 is_stmt 1 view .LVU33
+ 180              		.loc 1 29 13 is_stmt 0 view .LVU34
+ 181 0006 0023     		movs	r3, #0
+ 182 0008 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 183 000c 8DF80630 		strb	r3, [sp, #6]
+  30:App/Src/ina229.c ****     uint8_t rx[3] = {0};
+ 184              		.loc 1 30 5 is_stmt 1 view .LVU35
+ 185              		.loc 1 30 13 is_stmt 0 view .LVU36
+ 186 0010 ADF80030 		strh	r3, [sp]	@ movhi
+ 187 0014 8DF80230 		strb	r3, [sp, #2]
+  31:App/Src/ina229.c ****     INA229_Status status;
+ 188              		.loc 1 31 5 is_stmt 1 view .LVU37
+  32:App/Src/ina229.c **** 
+  33:App/Src/ina229.c ****     if (reg > 0x3FU || value == NULL)
+ 189              		.loc 1 33 5 view .LVU38
+ 190              		.loc 1 33 8 is_stmt 0 view .LVU39
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 5
+
+
+ 191 0018 3F29     		cmp	r1, #63
+ 192 001a 15D8     		bhi	.L14
+ 193 001c 6A46     		mov	r2, sp
+ 194              	.LVL18:
+ 195              		.loc 1 33 21 discriminator 1 view .LVU40
+ 196 001e ACB1     		cbz	r4, .L15
+  34:App/Src/ina229.c ****     {
+  35:App/Src/ina229.c ****         return INA229_INVALID_ARG;
+  36:App/Src/ina229.c ****     }
+  37:App/Src/ina229.c ****     tx[0] = (uint8_t)((reg << 2) | 0x01U);
+ 197              		.loc 1 37 5 is_stmt 1 view .LVU41
+ 198              		.loc 1 37 28 is_stmt 0 view .LVU42
+ 199 0020 8900     		lsls	r1, r1, #2
+ 200              	.LVL19:
+ 201              		.loc 1 37 28 view .LVU43
+ 202 0022 C9B2     		uxtb	r1, r1
+ 203              		.loc 1 37 13 view .LVU44
+ 204 0024 41F00101 		orr	r1, r1, #1
+ 205              		.loc 1 37 11 view .LVU45
+ 206 0028 8DF80410 		strb	r1, [sp, #4]
+  38:App/Src/ina229.c ****     status = INA229_Transfer(handle, tx, rx, sizeof(tx));
+ 207              		.loc 1 38 5 is_stmt 1 view .LVU46
+ 208              		.loc 1 38 14 is_stmt 0 view .LVU47
+ 209 002c 0323     		movs	r3, #3
+ 210 002e 01A9     		add	r1, sp, #4
+ 211 0030 FFF7FEFF 		bl	INA229_Transfer
+ 212              	.LVL20:
+  39:App/Src/ina229.c ****     if (status == INA229_OK)
+ 213              		.loc 1 39 5 is_stmt 1 view .LVU48
+ 214              		.loc 1 39 8 is_stmt 0 view .LVU49
+ 215 0034 30B9     		cbnz	r0, .L13
+  40:App/Src/ina229.c ****     {
+  41:App/Src/ina229.c ****         *value = (uint16_t)(((uint16_t)rx[1] << 8) | rx[2]);
+ 216              		.loc 1 41 9 is_stmt 1 view .LVU50
+ 217              		.loc 1 41 42 is_stmt 0 view .LVU51
+ 218 0036 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
+ 219              		.loc 1 41 56 view .LVU52
+ 220 003a 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 221              		.loc 1 41 18 view .LVU53
+ 222 003e 43EA0223 		orr	r3, r3, r2, lsl #8
+ 223              		.loc 1 41 16 view .LVU54
+ 224 0042 2380     		strh	r3, [r4]	@ movhi
+ 225              	.LVL21:
+ 226              	.L13:
+  42:App/Src/ina229.c ****     }
+  43:App/Src/ina229.c ****     return status;
+  44:App/Src/ina229.c **** }
+ 227              		.loc 1 44 1 view .LVU55
+ 228 0044 02B0     		add	sp, sp, #8
+ 229              	.LCFI6:
+ 230              		.cfi_remember_state
+ 231              		.cfi_def_cfa_offset 8
+ 232              		@ sp needed
+ 233 0046 10BD     		pop	{r4, pc}
+ 234              	.LVL22:
+ 235              	.L14:
+ 236              	.LCFI7:
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 6
+
+
+ 237              		.cfi_restore_state
+  35:App/Src/ina229.c ****     }
+ 238              		.loc 1 35 16 view .LVU56
+ 239 0048 0320     		movs	r0, #3
+ 240              	.LVL23:
+  35:App/Src/ina229.c ****     }
+ 241              		.loc 1 35 16 view .LVU57
+ 242 004a FBE7     		b	.L13
+ 243              	.LVL24:
+ 244              	.L15:
+  35:App/Src/ina229.c ****     }
+ 245              		.loc 1 35 16 view .LVU58
+ 246 004c 0320     		movs	r0, #3
+ 247              	.LVL25:
+  35:App/Src/ina229.c ****     }
+ 248              		.loc 1 35 16 view .LVU59
+ 249 004e F9E7     		b	.L13
+ 250              		.cfi_endproc
+ 251              	.LFE135:
+ 253              		.section	.text.INA229_WriteReg16,"ax",%progbits
+ 254              		.align	1
+ 255              		.global	INA229_WriteReg16
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 260              	INA229_WriteReg16:
+ 261              	.LVL26:
+ 262              	.LFB136:
+  45:App/Src/ina229.c **** 
+  46:App/Src/ina229.c **** INA229_Status INA229_WriteReg16(INA229_HandleTypeDef *handle, uint8_t reg, uint16_t value)
+  47:App/Src/ina229.c **** {
+ 263              		.loc 1 47 1 is_stmt 1 view -0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 8
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267              		.loc 1 47 1 is_stmt 0 view .LVU61
+ 268 0000 00B5     		push	{lr}
+ 269              	.LCFI8:
+ 270              		.cfi_def_cfa_offset 4
+ 271              		.cfi_offset 14, -4
+ 272 0002 83B0     		sub	sp, sp, #12
+ 273              	.LCFI9:
+ 274              		.cfi_def_cfa_offset 16
+  48:App/Src/ina229.c ****     uint8_t tx[3] = {(uint8_t)(reg << 2), (uint8_t)(value >> 8), (uint8_t)value};
+ 275              		.loc 1 48 5 is_stmt 1 view .LVU62
+ 276              		.loc 1 48 22 is_stmt 0 view .LVU63
+ 277 0004 8B00     		lsls	r3, r1, #2
+ 278              		.loc 1 48 13 view .LVU64
+ 279 0006 8DF80430 		strb	r3, [sp, #4]
+ 280              		.loc 1 48 43 view .LVU65
+ 281 000a 130A     		lsrs	r3, r2, #8
+ 282              		.loc 1 48 13 view .LVU66
+ 283 000c 8DF80530 		strb	r3, [sp, #5]
+ 284 0010 8DF80620 		strb	r2, [sp, #6]
+  49:App/Src/ina229.c ****     uint8_t rx[3] = {0};
+ 285              		.loc 1 49 5 is_stmt 1 view .LVU67
+ 286              		.loc 1 49 13 is_stmt 0 view .LVU68
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 7
+
+
+ 287 0014 0023     		movs	r3, #0
+ 288 0016 ADF80030 		strh	r3, [sp]	@ movhi
+ 289 001a 8DF80230 		strb	r3, [sp, #2]
+  50:App/Src/ina229.c **** 
+  51:App/Src/ina229.c ****     if (reg > 0x3FU)
+ 290              		.loc 1 51 5 is_stmt 1 view .LVU69
+ 291              		.loc 1 51 8 is_stmt 0 view .LVU70
+ 292 001e 3F29     		cmp	r1, #63
+ 293 0020 06D8     		bhi	.L19
+ 294 0022 6A46     		mov	r2, sp
+ 295              	.LVL27:
+  52:App/Src/ina229.c ****     {
+  53:App/Src/ina229.c ****         return INA229_INVALID_ARG;
+  54:App/Src/ina229.c ****     }
+  55:App/Src/ina229.c ****     return INA229_Transfer(handle, tx, rx, sizeof(tx));
+ 296              		.loc 1 55 5 is_stmt 1 view .LVU71
+ 297              		.loc 1 55 12 is_stmt 0 view .LVU72
+ 298 0024 0323     		movs	r3, #3
+ 299 0026 01A9     		add	r1, sp, #4
+ 300              	.LVL28:
+ 301              		.loc 1 55 12 view .LVU73
+ 302 0028 FFF7FEFF 		bl	INA229_Transfer
+ 303              	.LVL29:
+ 304              	.L18:
+  56:App/Src/ina229.c **** }
+ 305              		.loc 1 56 1 view .LVU74
+ 306 002c 03B0     		add	sp, sp, #12
+ 307              	.LCFI10:
+ 308              		.cfi_remember_state
+ 309              		.cfi_def_cfa_offset 4
+ 310              		@ sp needed
+ 311 002e 00BD     		pop	{pc}
+ 312              	.LVL30:
+ 313              	.L19:
+ 314              	.LCFI11:
+ 315              		.cfi_restore_state
+  53:App/Src/ina229.c ****     }
+ 316              		.loc 1 53 16 view .LVU75
+ 317 0030 0320     		movs	r0, #3
+ 318              	.LVL31:
+  53:App/Src/ina229.c ****     }
+ 319              		.loc 1 53 16 view .LVU76
+ 320 0032 FBE7     		b	.L18
+ 321              		.cfi_endproc
+ 322              	.LFE136:
+ 324              		.section	.text.INA229_ReadReg24,"ax",%progbits
+ 325              		.align	1
+ 326              		.global	INA229_ReadReg24
+ 327              		.syntax unified
+ 328              		.thumb
+ 329              		.thumb_func
+ 331              	INA229_ReadReg24:
+ 332              	.LVL32:
+ 333              	.LFB137:
+  57:App/Src/ina229.c **** 
+  58:App/Src/ina229.c **** INA229_Status INA229_ReadReg24(INA229_HandleTypeDef *handle, uint8_t reg, uint32_t *value)
+  59:App/Src/ina229.c **** {
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 8
+
+
+ 334              		.loc 1 59 1 is_stmt 1 view -0
+ 335              		.cfi_startproc
+ 336              		@ args = 0, pretend = 0, frame = 8
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338              		.loc 1 59 1 is_stmt 0 view .LVU78
+ 339 0000 10B5     		push	{r4, lr}
+ 340              	.LCFI12:
+ 341              		.cfi_def_cfa_offset 8
+ 342              		.cfi_offset 4, -8
+ 343              		.cfi_offset 14, -4
+ 344 0002 82B0     		sub	sp, sp, #8
+ 345              	.LCFI13:
+ 346              		.cfi_def_cfa_offset 16
+  60:App/Src/ina229.c ****     uint8_t tx[4] = {0};
+ 347              		.loc 1 60 5 is_stmt 1 view .LVU79
+ 348              		.loc 1 60 13 is_stmt 0 view .LVU80
+ 349 0004 0023     		movs	r3, #0
+ 350 0006 0193     		str	r3, [sp, #4]
+  61:App/Src/ina229.c ****     uint8_t rx[4] = {0};
+ 351              		.loc 1 61 5 is_stmt 1 view .LVU81
+ 352              		.loc 1 61 13 is_stmt 0 view .LVU82
+ 353 0008 0093     		str	r3, [sp]
+  62:App/Src/ina229.c ****     INA229_Status status;
+ 354              		.loc 1 62 5 is_stmt 1 view .LVU83
+  63:App/Src/ina229.c **** 
+  64:App/Src/ina229.c ****     if (reg > 0x3FU || value == NULL)
+ 355              		.loc 1 64 5 view .LVU84
+ 356              		.loc 1 64 8 is_stmt 0 view .LVU85
+ 357 000a 3F29     		cmp	r1, #63
+ 358 000c 1BD8     		bhi	.L23
+ 359 000e 1446     		mov	r4, r2
+ 360              		.loc 1 64 21 discriminator 1 view .LVU86
+ 361 0010 DAB1     		cbz	r2, .L24
+  65:App/Src/ina229.c ****     {
+  66:App/Src/ina229.c ****         return INA229_INVALID_ARG;
+  67:App/Src/ina229.c ****     }
+  68:App/Src/ina229.c ****     tx[0] = (uint8_t)((reg << 2) | 0x01U);
+ 362              		.loc 1 68 5 is_stmt 1 view .LVU87
+ 363              		.loc 1 68 28 is_stmt 0 view .LVU88
+ 364 0012 8900     		lsls	r1, r1, #2
+ 365              	.LVL33:
+ 366              		.loc 1 68 28 view .LVU89
+ 367 0014 C9B2     		uxtb	r1, r1
+ 368              		.loc 1 68 13 view .LVU90
+ 369 0016 41F00101 		orr	r1, r1, #1
+ 370              		.loc 1 68 11 view .LVU91
+ 371 001a 8DF80410 		strb	r1, [sp, #4]
+  69:App/Src/ina229.c ****     status = INA229_Transfer(handle, tx, rx, sizeof(tx));
+ 372              		.loc 1 69 5 is_stmt 1 view .LVU92
+ 373              		.loc 1 69 14 is_stmt 0 view .LVU93
+ 374 001e 0423     		movs	r3, #4
+ 375 0020 6A46     		mov	r2, sp
+ 376              	.LVL34:
+ 377              		.loc 1 69 14 view .LVU94
+ 378 0022 0DEB0301 		add	r1, sp, r3
+ 379 0026 FFF7FEFF 		bl	INA229_Transfer
+ 380              	.LVL35:
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 9
+
+
+  70:App/Src/ina229.c ****     if (status == INA229_OK)
+ 381              		.loc 1 70 5 is_stmt 1 view .LVU95
+ 382              		.loc 1 70 8 is_stmt 0 view .LVU96
+ 383 002a 50B9     		cbnz	r0, .L22
+  71:App/Src/ina229.c ****     {
+  72:App/Src/ina229.c ****         *value = ((uint32_t)rx[1] << 16) | ((uint32_t)rx[2] << 8) | rx[3];
+ 384              		.loc 1 72 9 is_stmt 1 view .LVU97
+ 385              		.loc 1 72 31 is_stmt 0 view .LVU98
+ 386 002c 9DF80120 		ldrb	r2, [sp, #1]	@ zero_extendqisi2
+ 387              		.loc 1 72 57 view .LVU99
+ 388 0030 9DF80230 		ldrb	r3, [sp, #2]	@ zero_extendqisi2
+ 389              		.loc 1 72 61 view .LVU100
+ 390 0034 1B02     		lsls	r3, r3, #8
+ 391              		.loc 1 72 42 view .LVU101
+ 392 0036 43EA0243 		orr	r3, r3, r2, lsl #16
+ 393              		.loc 1 72 71 view .LVU102
+ 394 003a 9DF80320 		ldrb	r2, [sp, #3]	@ zero_extendqisi2
+ 395              		.loc 1 72 67 view .LVU103
+ 396 003e 1343     		orrs	r3, r3, r2
+ 397              		.loc 1 72 16 view .LVU104
+ 398 0040 2360     		str	r3, [r4]
+ 399              	.LVL36:
+ 400              	.L22:
+  73:App/Src/ina229.c ****     }
+  74:App/Src/ina229.c ****     return status;
+  75:App/Src/ina229.c **** }
+ 401              		.loc 1 75 1 view .LVU105
+ 402 0042 02B0     		add	sp, sp, #8
+ 403              	.LCFI14:
+ 404              		.cfi_remember_state
+ 405              		.cfi_def_cfa_offset 8
+ 406              		@ sp needed
+ 407 0044 10BD     		pop	{r4, pc}
+ 408              	.LVL37:
+ 409              	.L23:
+ 410              	.LCFI15:
+ 411              		.cfi_restore_state
+  66:App/Src/ina229.c ****     }
+ 412              		.loc 1 66 16 view .LVU106
+ 413 0046 0320     		movs	r0, #3
+ 414              	.LVL38:
+  66:App/Src/ina229.c ****     }
+ 415              		.loc 1 66 16 view .LVU107
+ 416 0048 FBE7     		b	.L22
+ 417              	.LVL39:
+ 418              	.L24:
+  66:App/Src/ina229.c ****     }
+ 419              		.loc 1 66 16 view .LVU108
+ 420 004a 0320     		movs	r0, #3
+ 421              	.LVL40:
+  66:App/Src/ina229.c ****     }
+ 422              		.loc 1 66 16 view .LVU109
+ 423 004c F9E7     		b	.L22
+ 424              		.cfi_endproc
+ 425              	.LFE137:
+ 427              		.section	.text.INA229_ReadManufacturerID,"ax",%progbits
+ 428              		.align	1
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 10
+
+
+ 429              		.global	INA229_ReadManufacturerID
+ 430              		.syntax unified
+ 431              		.thumb
+ 432              		.thumb_func
+ 434              	INA229_ReadManufacturerID:
+ 435              	.LVL41:
+ 436              	.LFB138:
+  76:App/Src/ina229.c **** 
+  77:App/Src/ina229.c **** INA229_Status INA229_ReadManufacturerID(INA229_HandleTypeDef *handle, uint16_t *value)
+  78:App/Src/ina229.c **** {
+ 437              		.loc 1 78 1 is_stmt 1 view -0
+ 438              		.cfi_startproc
+ 439              		@ args = 0, pretend = 0, frame = 0
+ 440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 441              		.loc 1 78 1 is_stmt 0 view .LVU111
+ 442 0000 08B5     		push	{r3, lr}
+ 443              	.LCFI16:
+ 444              		.cfi_def_cfa_offset 8
+ 445              		.cfi_offset 3, -8
+ 446              		.cfi_offset 14, -4
+ 447 0002 0A46     		mov	r2, r1
+  79:App/Src/ina229.c ****     return INA229_ReadReg16(handle, INA229_REG_MANUFACTURER_ID, value);
+ 448              		.loc 1 79 5 is_stmt 1 view .LVU112
+ 449              		.loc 1 79 12 is_stmt 0 view .LVU113
+ 450 0004 3E21     		movs	r1, #62
+ 451              	.LVL42:
+ 452              		.loc 1 79 12 view .LVU114
+ 453 0006 FFF7FEFF 		bl	INA229_ReadReg16
+ 454              	.LVL43:
+  80:App/Src/ina229.c **** }
+ 455              		.loc 1 80 1 view .LVU115
+ 456 000a 08BD     		pop	{r3, pc}
+ 457              		.cfi_endproc
+ 458              	.LFE138:
+ 460              		.section	.text.INA229_ReadDeviceID,"ax",%progbits
+ 461              		.align	1
+ 462              		.global	INA229_ReadDeviceID
+ 463              		.syntax unified
+ 464              		.thumb
+ 465              		.thumb_func
+ 467              	INA229_ReadDeviceID:
+ 468              	.LVL44:
+ 469              	.LFB139:
+  81:App/Src/ina229.c **** 
+  82:App/Src/ina229.c **** INA229_Status INA229_ReadDeviceID(INA229_HandleTypeDef *handle, uint16_t *value)
+  83:App/Src/ina229.c **** {
+ 470              		.loc 1 83 1 is_stmt 1 view -0
+ 471              		.cfi_startproc
+ 472              		@ args = 0, pretend = 0, frame = 0
+ 473              		@ frame_needed = 0, uses_anonymous_args = 0
+ 474              		.loc 1 83 1 is_stmt 0 view .LVU117
+ 475 0000 08B5     		push	{r3, lr}
+ 476              	.LCFI17:
+ 477              		.cfi_def_cfa_offset 8
+ 478              		.cfi_offset 3, -8
+ 479              		.cfi_offset 14, -4
+ 480 0002 0A46     		mov	r2, r1
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 11
+
+
+  84:App/Src/ina229.c ****     return INA229_ReadReg16(handle, INA229_REG_DEVICE_ID, value);
+ 481              		.loc 1 84 5 is_stmt 1 view .LVU118
+ 482              		.loc 1 84 12 is_stmt 0 view .LVU119
+ 483 0004 3F21     		movs	r1, #63
+ 484              	.LVL45:
+ 485              		.loc 1 84 12 view .LVU120
+ 486 0006 FFF7FEFF 		bl	INA229_ReadReg16
+ 487              	.LVL46:
+  85:App/Src/ina229.c **** }
+ 488              		.loc 1 85 1 view .LVU121
+ 489 000a 08BD     		pop	{r3, pc}
+ 490              		.cfi_endproc
+ 491              	.LFE139:
+ 493              		.text
+ 494              	.Letext0:
+ 495              		.file 2 "C:\\ST\\STM32CubeCLT_1.22.0\\GNU-tools-for-STM32\\bin/../lib/gcc/arm-none-eabi/14.3.1/../
+ 496              		.file 3 "C:\\ST\\STM32CubeCLT_1.22.0\\GNU-tools-for-STM32\\bin/../lib/gcc/arm-none-eabi/14.3.1/../
+ 497              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f411xe.h"
+ 498              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 499              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 500              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 501              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 502              		.file 9 "App/Inc/ina229.h"
+ARM GAS  C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ina229.c
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:21     .text.INA229_Transfer:00000000 $t
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:26     .text.INA229_Transfer:00000000 INA229_Transfer
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:156    .text.INA229_ReadReg16:00000000 $t
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:162    .text.INA229_ReadReg16:00000000 INA229_ReadReg16
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:254    .text.INA229_WriteReg16:00000000 $t
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:260    .text.INA229_WriteReg16:00000000 INA229_WriteReg16
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:325    .text.INA229_ReadReg24:00000000 $t
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:331    .text.INA229_ReadReg24:00000000 INA229_ReadReg24
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:428    .text.INA229_ReadManufacturerID:00000000 $t
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:434    .text.INA229_ReadManufacturerID:00000000 INA229_ReadManufacturerID
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:461    .text.INA229_ReadDeviceID:00000000 $t
+C:\Users\anozdrin\AppData\Local\Temp\ccvJx4fr.s:467    .text.INA229_ReadDeviceID:00000000 INA229_ReadDeviceID
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_TransmitReceive

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "calibration.h"
 #include "ina229.h"
 #include "main.h"
 #include "spi.h"
@@ -28,6 +29,7 @@ static uint8_t tx_buffer[APP_TX_SIZE];
 static uint16_t tx_length;
 static uint8_t tx_pending;
 static volatile uint8_t tx_ready;
+static volatile bool streaming_active;
 
 static void App_QueueText(const char *message)
 {
@@ -53,6 +55,158 @@ static void App_QueueFormatted(int length)
     tx_pending = 1U;
 }
 
+static void App_CalibrationCommand(void)
+{
+    Calibration_Command command;
+    Calibration_Status status = Calibration_ParseCommand(line, &command);
+    const Calibration_State *cal;
+
+    if (status == CAL_OK)
+    {
+        switch (command.type)
+        {
+        case CAL_CMD_SHOW:
+            cal = Calibration_GetState();
+            App_QueueFormatted(snprintf((char *)tx_buffer, sizeof(tx_buffer),
+                "CAL:\r\nOFFSET_UA: %ld\r\nGAIN_PPM: %lu\r\nENABLED: %u\r\n"
+                "SOURCE: %s\r\nDIRTY: %u\r\nSTATUS: OK\r\n",
+                (long)cal->parameters.offset_ua,
+                (unsigned long)cal->parameters.gain_ppm,
+                cal->parameters.enabled ? 1U : 0U,
+                Calibration_SourceText(cal->source), cal->dirty ? 1U : 0U));
+            return;
+        case CAL_CMD_SET_OFFSET:
+            status = Calibration_SetOffset(command.offset_ua);
+            break;
+        case CAL_CMD_SET_GAIN:
+            status = Calibration_SetGain(command.gain_ppm);
+            break;
+        case CAL_CMD_ENABLE:
+            Calibration_SetEnabled(command.enabled);
+            break;
+        case CAL_CMD_SAVE:
+            status = Calibration_Save(streaming_active);
+            break;
+        case CAL_CMD_LOAD:
+            status = Calibration_Load();
+            break;
+        case CAL_CMD_RESET:
+            Calibration_Reset();
+            break;
+        }
+    }
+    if (status == CAL_OK)
+    {
+        App_QueueText("STATUS: OK\r\n");
+    }
+    else
+    {
+        App_QueueFormatted(snprintf((char *)tx_buffer, sizeof(tx_buffer),
+            "ERR: %s\r\n", Calibration_StatusText(status)));
+    }
+}
+
+static void App_Measure(void)
+{
+    uint16_t config;
+    uint32_t vshunt_raw;
+    uint32_t vbus_raw;
+    uint16_t dietemp_raw;
+    uint32_t shunt_bits;
+    int32_t shunt_code;
+    int32_t temp_code;
+    int64_t shunt_mv_scaled;
+    int64_t current_ma_scaled;
+    int64_t current_cal_na;
+    int64_t temp_c_scaled;
+    uint64_t shunt_magnitude;
+    uint64_t current_magnitude;
+    uint64_t current_cal_magnitude;
+    uint64_t temp_magnitude;
+    uint64_t bus_v_scaled;
+    uint64_t bus_fraction;
+    INA229_Status status;
+
+    status = INA229_ReadReg16(&ina, INA229_REG_CONFIG, &config);
+    if (status == INA229_OK)
+    {
+        status = INA229_ReadVShunt(&ina, &vshunt_raw);
+    }
+    if (status == INA229_OK)
+    {
+        status = INA229_ReadVBus(&ina, &vbus_raw);
+    }
+    if (status == INA229_OK)
+    {
+        status = INA229_ReadDieTemp(&ina, &dietemp_raw);
+    }
+    if (status != INA229_OK)
+    {
+        App_QueueText((status == INA229_TIMEOUT) ? "STATUS: SPI_TIMEOUT\r\n" : "STATUS: SPI_ERROR\r\n");
+        return;
+    }
+
+    /* Bits 23:4 are a signed 20-bit two's-complement number. */
+    shunt_bits = (vshunt_raw >> 4) & 0xFFFFFU;
+    shunt_code = (shunt_bits & 0x80000U) != 0U ?
+        (int32_t)shunt_bits - 0x100000L : (int32_t)shunt_bits;
+    temp_code = (dietemp_raw & 0x8000U) != 0U ?
+        (int32_t)dietemp_raw - 0x10000L : (int32_t)dietemp_raw;
+
+    /* Fixed-point scales: 10^9 per mV, 10^6 per mA,
+       10^10 per V, and 10^7 per degree C. */
+    shunt_mv_scaled = (int64_t)shunt_code *
+        (((config & INA229_CONFIG_ADCRANGE) != 0U) ? 78125LL : 312500LL);
+    current_ma_scaled = (int64_t)shunt_code *
+        (((config & INA229_CONFIG_ADCRANGE) != 0U) ? 15625LL : 62500LL);
+    if (Calibration_ApplyRawCurrent(current_ma_scaled, &current_cal_na) != CAL_OK)
+    {
+        App_QueueText("STATUS: CAL_OVERFLOW\r\n");
+        return;
+    }
+    bus_v_scaled = (uint64_t)(vbus_raw >> 4) * 1953125ULL;
+    temp_c_scaled = (int64_t)temp_code * 78125LL;
+
+    shunt_magnitude = (uint64_t)(shunt_mv_scaled < 0 ? -shunt_mv_scaled : shunt_mv_scaled);
+    current_magnitude = (uint64_t)(current_ma_scaled < 0 ? -current_ma_scaled : current_ma_scaled);
+    current_cal_magnitude = (uint64_t)(current_cal_na < 0 ? -current_cal_na : current_cal_na);
+    temp_magnitude = (uint64_t)(temp_c_scaled < 0 ? -temp_c_scaled : temp_c_scaled);
+    bus_fraction = bus_v_scaled % 10000000000ULL;
+
+    App_QueueFormatted(snprintf((char *)tx_buffer, sizeof(tx_buffer),
+        "VSHUNT_RAW: 0x%06lX\r\n"
+        "VSHUNT_CODE: %ld\r\n"
+        "VSHUNT_mV: %s%lu.%09lu\r\n"
+        "CURRENT_mA: %s%lu.%06lu\r\n"
+        "CURRENT_CAL_mA: %s%lu.%06lu\r\n"
+        "CAL_ENABLED: %u\r\n"
+        "VBUS_RAW: 0x%06lX\r\n"
+        "VBUS_V: %lu.%05lu%05lu\r\n"
+        "DIETEMP_RAW: 0x%04X\r\n"
+        "DIETEMP_C: %s%lu.%07lu\r\n"
+        "STATUS: OK\r\n",
+        (unsigned long)vshunt_raw,
+        (long)shunt_code,
+        (shunt_mv_scaled < 0) ? "-" : "",
+        (unsigned long)(shunt_magnitude / 1000000000ULL),
+        (unsigned long)(shunt_magnitude % 1000000000ULL),
+        (current_ma_scaled < 0) ? "-" : "",
+        (unsigned long)(current_magnitude / 1000000ULL),
+        (unsigned long)(current_magnitude % 1000000ULL),
+        (current_cal_na < 0) ? "-" : "",
+        (unsigned long)(current_cal_magnitude / 1000000ULL),
+        (unsigned long)(current_cal_magnitude % 1000000ULL),
+        Calibration_GetState()->parameters.enabled ? 1U : 0U,
+        (unsigned long)vbus_raw,
+        (unsigned long)(bus_v_scaled / 10000000000ULL),
+        (unsigned long)(bus_fraction / 100000ULL),
+        (unsigned long)(bus_fraction % 100000ULL),
+        (unsigned int)dietemp_raw,
+        (temp_c_scaled < 0) ? "-" : "",
+        (unsigned long)(temp_magnitude / 10000000ULL),
+        (unsigned long)(temp_magnitude % 10000000ULL)));
+}
+
 static void App_ExecuteCommand(void)
 {
     uint16_t manufacturer;
@@ -63,9 +217,15 @@ static void App_ExecuteCommand(void)
     INA229_Status status;
 
     line[line_length] = '\0';
+    if (memchr(line, '\0', line_length) != NULL)
+    {
+        App_QueueText("ERR: BAD_COMMAND\r\n");
+        return;
+    }
     if (strcmp(line, "help") == 0)
     {
-        App_QueueText("Commands: help, ping, info, ina, regs\r\n");
+        App_QueueText("Commands: help, ping, info, ina, regs, measure\r\n"
+                      "cal show|set offset_ua N|set gain_ppm N|enable 0/1|save|load|reset\r\n");
     }
     else if (strcmp(line, "ping") == 0)
     {
@@ -73,7 +233,7 @@ static void App_ExecuteCommand(void)
     }
     else if (strcmp(line, "info") == 0)
     {
-        App_QueueText("CurrentSensor\r\nFW: 0.1.0\r\nMCU: STM32F411RET6\r\nUSB: CDC\r\nSPI: 6000000 Hz\r\n");
+        App_QueueText("CurrentSensor\r\nFW: 0.2.0\r\nMCU: STM32F411RET6\r\nUSB: CDC\r\nSPI: 6000000 Hz\r\n");
     }
     else if (strcmp(line, "ina") == 0)
     {
@@ -117,6 +277,14 @@ static void App_ExecuteCommand(void)
             "CONFIG:     0x%04X\r\nADC_CONFIG: 0x%04X\r\nDIAG_ALRT:  0x%04X\r\n",
             config, adc_config, diag_alrt));
     }
+    else if (strcmp(line, "measure") == 0)
+    {
+        App_Measure();
+    }
+    else if (strcmp(line, "cal") == 0 || strncmp(line, "cal ", 4U) == 0)
+    {
+        App_CalibrationCommand();
+    }
     else
     {
         App_QueueText("ERR: UNKNOWN_COMMAND\r\n");
@@ -128,6 +296,7 @@ void App_Init(void)
     ina.hspi = &hspi1;
     ina.cs_port = INA_CS_GPIO_Port;
     ina.cs_pin = INA_CS_Pin;
+    Calibration_Init();
     tx_ready = 1U;
 }
 
@@ -156,6 +325,11 @@ void App_CdcRx(const uint8_t *data, uint32_t length)
 void App_CdcTxComplete(void)
 {
     tx_ready = 1U;
+}
+
+void App_SetStreamingActive(bool active)
+{
+    streaming_active = active;
 }
 
 void App_Process(void)

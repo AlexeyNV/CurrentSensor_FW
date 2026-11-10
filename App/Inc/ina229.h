@@ -7,9 +7,11 @@
 #define INA229_REG_ADC_CONFIG       0x01U
 #define INA229_REG_VSHUNT           0x04U
 #define INA229_REG_VBUS             0x05U
+#define INA229_REG_DIETEMP          0x06U
 #define INA229_REG_DIAG_ALRT        0x0BU
 #define INA229_REG_MANUFACTURER_ID  0x3EU
 #define INA229_REG_DEVICE_ID        0x3FU
+#define INA229_CONFIG_ADCRANGE      (1U << 4)
 
 typedef struct
 {
@@ -31,5 +33,8 @@ INA229_Status INA229_WriteReg16(INA229_HandleTypeDef *handle, uint8_t reg, uint1
 INA229_Status INA229_ReadReg24(INA229_HandleTypeDef *handle, uint8_t reg, uint32_t *value);
 INA229_Status INA229_ReadManufacturerID(INA229_HandleTypeDef *handle, uint16_t *value);
 INA229_Status INA229_ReadDeviceID(INA229_HandleTypeDef *handle, uint16_t *value);
+INA229_Status INA229_ReadVShunt(INA229_HandleTypeDef *handle, uint32_t *value);
+INA229_Status INA229_ReadVBus(INA229_HandleTypeDef *handle, uint32_t *value);
+INA229_Status INA229_ReadDieTemp(INA229_HandleTypeDef *handle, uint16_t *value);
 
 #endif

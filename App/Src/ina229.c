@@ -83,3 +83,18 @@ INA229_Status INA229_ReadDeviceID(INA229_HandleTypeDef *handle, uint16_t *value)
 {
     return INA229_ReadReg16(handle, INA229_REG_DEVICE_ID, value);
 }
+
+INA229_Status INA229_ReadVShunt(INA229_HandleTypeDef *handle, uint32_t *value)
+{
+    return INA229_ReadReg24(handle, INA229_REG_VSHUNT, value);
+}
+
+INA229_Status INA229_ReadVBus(INA229_HandleTypeDef *handle, uint32_t *value)
+{
+    return INA229_ReadReg24(handle, INA229_REG_VBUS, value);
+}
+
+INA229_Status INA229_ReadDieTemp(INA229_HandleTypeDef *handle, uint16_t *value)
+{
+    return INA229_ReadReg16(handle, INA229_REG_DIETEMP, value);
+}

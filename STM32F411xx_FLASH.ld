@@ -63,8 +63,12 @@ _Min_Stack_Size = 0x800; /* required amount of stack */
 MEMORY
 {
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 512K
+FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 384K
+CAL_FLASH (rx)  : ORIGIN = 0x08060000, LENGTH = 128K /* Sector 7, calibration journal */
 }
+
+__cal_flash_start = ORIGIN(CAL_FLASH);
+__cal_flash_end = ORIGIN(CAL_FLASH) + LENGTH(CAL_FLASH);
 
 /* Define output sections */
 SECTIONS
@@ -203,6 +207,8 @@ SECTIONS
     libgcc.a ( * )
   }
 
+  ASSERT(LOADADDR(.data) + SIZEOF(.data) <= ORIGIN(CAL_FLASH),
+         "Firmware image overlaps calibration sector")
 }
 
 

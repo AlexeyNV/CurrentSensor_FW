@@ -37,6 +37,9 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 App/Src/app.c \
+App/Src/calibration.c \
+App/Src/calibration_record.c \
+App/Src/calibration_storage.c \
 App/Src/ina229.c \
 Core/Src/main.c \
 Core/Src/gpio.c \

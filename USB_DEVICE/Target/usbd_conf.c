@@ -27,6 +27,7 @@
 #include "usbd_cdc.h"
 
 /* USER CODE BEGIN Includes */
+#include "app.h"
 
 /* USER CODE END Includes */
 
@@ -135,6 +136,7 @@ static void PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
+  App_UsbControlRequest();
   USBD_LL_SetupStage((USBD_HandleTypeDef*)hpcd->pData, (uint8_t *)hpcd->Setup);
 }
 
@@ -194,6 +196,7 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
    USBD_SpeedTypeDef speed = USBD_SPEED_FULL;
+  App_UsbReset();
 
   if ( hpcd->Init.speed != PCD_SPEED_FULL)
   {

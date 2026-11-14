@@ -1,0 +1,298 @@
+{
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "qt": "windows",
+  "backend": "pyqtgraph",
+  "pyqtgraph": "0.14.0",
+  "measurement": "synchronous paint/readback; offscreen throughput is not monitor presentation FPS",
+  "render": [
+    {
+      "samples": 100000,
+      "backend": "pyqtgraph",
+      "frames": 30,
+      "cold_index_ms": 16.49489999999787,
+      "preparation_ms_mean": 0.22966333335716627,
+      "update_ms_mean": 40.259729999979754,
+      "update_ms_max": 81.99120000062976,
+      "zoom_pan_ms_p95": 45.79215499966267,
+      "rendered_updates_per_second": 24.67259263962407,
+      "cpu_percent_one_core": 199.17978433029847,
+      "rss_peak_mb": 123.46875,
+      "exact_peak_indices_preserved": true,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    },
+    {
+      "samples": 600000,
+      "backend": "pyqtgraph",
+      "frames": 30,
+      "cold_index_ms": 9.428000000298198,
+      "preparation_ms_mean": 4.15910333328308,
+      "update_ms_mean": 42.74979333334462,
+      "update_ms_max": 74.24540000010893,
+      "zoom_pan_ms_p95": 65.902620000088,
+      "rendered_updates_per_second": 21.298403194819198,
+      "cpu_percent_one_core": 186.36102795466797,
+      "rss_peak_mb": 151.67578125,
+      "exact_peak_indices_preserved": true,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    },
+    {
+      "samples": 3000000,
+      "backend": "pyqtgraph",
+      "frames": 30,
+      "cold_index_ms": 43.34039999957895,
+      "preparation_ms_mean": 3.3087600000120196,
+      "update_ms_mean": 40.74241666673212,
+      "update_ms_max": 72.76790000014444,
+      "zoom_pan_ms_p95": 66.75708999996455,
+      "rendered_updates_per_second": 22.679345428732255,
+      "cpu_percent_one_core": 192.53819296267488,
+      "rss_peak_mb": 226.953125,
+      "exact_peak_indices_preserved": true,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    },
+    {
+      "samples": 10000000,
+      "backend": "pyqtgraph",
+      "frames": 30,
+      "cold_index_ms": 150.92590000040218,
+      "preparation_ms_mean": 4.452346666615388,
+      "update_ms_mean": 39.00680666668753,
+      "update_ms_max": 75.14810000066063,
+      "zoom_pan_ms_p95": 85.65265500033087,
+      "rendered_updates_per_second": 22.988401814876873,
+      "cpu_percent_one_core": 136.49363577583145,
+      "rss_peak_mb": 425.7578125,
+      "exact_peak_indices_preserved": true,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    }
+  ],
+  "filters": [
+    {
+      "rate_hz": 1000,
+      "mode": "RAW",
+      "processing_ms_per_second": 1.4251900000090245,
+      "max_batch_ms": 0.5940999999438645,
+      "throughput_samples_s": 701660.8311829777,
+      "cpu_ms_per_second": 0.78125
+    },
+    {
+      "rate_hz": 1000,
+      "mode": "MEDIAN3",
+      "processing_ms_per_second": 1.3671449999947072,
+      "max_batch_ms": 0.3483000000414904,
+      "throughput_samples_s": 731451.3091178123,
+      "cpu_ms_per_second": 1.5625
+    },
+    {
+      "rate_hz": 1000,
+      "mode": "MEDIAN5",
+      "processing_ms_per_second": 1.3402749999841035,
+      "max_batch_ms": 0.27859999954671366,
+      "throughput_samples_s": 746115.5359995975,
+      "cpu_ms_per_second": 1.5625
+    },
+    {
+      "rate_hz": 1000,
+      "mode": "RAW + MEDIAN3",
+      "processing_ms_per_second": 1.5141749999656895,
+      "max_batch_ms": 0.352500000190048,
+      "throughput_samples_s": 660425.6443427341,
+      "cpu_ms_per_second": 1.5625
+    },
+    {
+      "rate_hz": 2500,
+      "mode": "RAW",
+      "processing_ms_per_second": 3.530410000030315,
+      "max_batch_ms": 0.2382000002398854,
+      "throughput_samples_s": 708133.0496963619,
+      "cpu_ms_per_second": 3.125
+    },
+    {
+      "rate_hz": 2500,
+      "mode": "MEDIAN3",
+      "processing_ms_per_second": 3.51483500003269,
+      "max_batch_ms": 0.242400000388443,
+      "throughput_samples_s": 711270.9415880827,
+      "cpu_ms_per_second": 3.90625
+    },
+    {
+      "rate_hz": 2500,
+      "mode": "MEDIAN5",
+      "processing_ms_per_second": 3.644274999987829,
+      "max_batch_ms": 0.33799999982875306,
+      "throughput_samples_s": 686007.504924395,
+      "cpu_ms_per_second": 3.125
+    },
+    {
+      "rate_hz": 2500,
+      "mode": "RAW + MEDIAN3",
+      "processing_ms_per_second": 3.7634150000030786,
+      "max_batch_ms": 1.7262000001210254,
+      "throughput_samples_s": 664290.2789083731,
+      "cpu_ms_per_second": 3.90625
+    },
+    {
+      "rate_hz": 5000,
+      "mode": "RAW",
+      "processing_ms_per_second": 7.162444999994477,
+      "max_batch_ms": 0.3302000004623551,
+      "throughput_samples_s": 698085.6397506515,
+      "cpu_ms_per_second": 7.03125
+    },
+    {
+      "rate_hz": 5000,
+      "mode": "MEDIAN3",
+      "processing_ms_per_second": 6.532764999974461,
+      "max_batch_ms": 0.30030000016267877,
+      "throughput_samples_s": 765372.7020671258,
+      "cpu_ms_per_second": 7.03125
+    },
+    {
+      "rate_hz": 5000,
+      "mode": "MEDIAN5",
+      "processing_ms_per_second": 6.545219999998153,
+      "max_batch_ms": 0.32390000069426605,
+      "throughput_samples_s": 763916.2625551793,
+      "cpu_ms_per_second": 6.25
+    },
+    {
+      "rate_hz": 5000,
+      "mode": "RAW + MEDIAN3",
+      "processing_ms_per_second": 6.606284999998024,
+      "max_batch_ms": 0.34159999995608814,
+      "throughput_samples_s": 756855.0251770087,
+      "cpu_ms_per_second": 7.03125
+    },
+    {
+      "rate_hz": 10000,
+      "mode": "RAW",
+      "processing_ms_per_second": 12.926969999989524,
+      "max_batch_ms": 0.34779999987222254,
+      "throughput_samples_s": 773576.4838943777,
+      "cpu_ms_per_second": 12.5
+    },
+    {
+      "rate_hz": 10000,
+      "mode": "MEDIAN3",
+      "processing_ms_per_second": 13.01936999998361,
+      "max_batch_ms": 0.5491000001711654,
+      "throughput_samples_s": 768086.3206140227,
+      "cpu_ms_per_second": 13.28125
+    },
+    {
+      "rate_hz": 10000,
+      "mode": "MEDIAN5",
+      "processing_ms_per_second": 12.967045000004873,
+      "max_batch_ms": 0.35769999976764666,
+      "throughput_samples_s": 771185.7250434654,
+      "cpu_ms_per_second": 13.28125
+    },
+    {
+      "rate_hz": 10000,
+      "mode": "RAW + MEDIAN3",
+      "processing_ms_per_second": 13.289334999990388,
+      "max_batch_ms": 0.3484999997453997,
+      "throughput_samples_s": 752483.1001707184,
+      "cpu_ms_per_second": 13.28125
+    }
+  ],
+  "live_mock": {
+    "modes": [
+      {
+        "mode": "RAW",
+        "seconds": 3.1686917999995785,
+        "graph_updates_per_second": 25.878187332706485,
+        "cpu_percent_one_core": 171.10767920063165,
+        "rss_peak_mb": 207.46484375
+      },
+      {
+        "mode": "MEDIAN3",
+        "seconds": 3.0402235000001383,
+        "graph_updates_per_second": 25.98493169992154,
+        "cpu_percent_one_core": 162.9197656027517,
+        "rss_peak_mb": 208.484375
+      },
+      {
+        "mode": "MEDIAN5",
+        "seconds": 3.0085454999998547,
+        "graph_updates_per_second": 25.926149363539214,
+        "cpu_percent_one_core": 149.57393863580316,
+        "rss_peak_mb": 211.05078125
+      },
+      {
+        "mode": "RAW + MEDIAN3",
+        "seconds": 2.996169199999713,
+        "graph_updates_per_second": 23.363166539462025,
+        "cpu_percent_one_core": 162.18626771814039,
+        "rss_peak_mb": 212.57421875
+      }
+    ],
+    "report": {
+      "state": "idle",
+      "acquisition": {
+        "samples": 123750,
+        "time_s": 12.3749,
+        "rate_hz": 10000.0,
+        "current_ma": 119.125,
+        "min_ma": 114.375,
+        "max_ma": 5216.125,
+        "mean_ma": 142.2621297979798,
+        "std_ma": 84.16636136343107,
+        "initial_slot_gaps": 0,
+        "running_slot_gaps": 0,
+        "period_violations": 0,
+        "anomalies": 26,
+        "revision": 792,
+        "live_samples": 123750
+      },
+      "device_counters": {
+        "ADC_SAMPLES": 123750,
+        "USB_SAMPLES_SENT": 123750,
+        "FRAMES_SENT": 4059,
+        "FRAMES_DROPPED": 0,
+        "USB_BUSY_COUNT": 0,
+        "TX_BUFFER_OVERFLOWS": 0,
+        "ACQ_BUFFER_OVERFLOWS": 0,
+        "LOST_SAMPLE_SLOTS": 0,
+        "SPI_ERRORS": 0,
+        "MAX_SERVICE_US": 0,
+        "MIN_SAMPLE_PERIOD_US": 100,
+        "MAX_SAMPLE_PERIOD_US": 100,
+        "EFFECTIVE_STREAM_RATE_HZ": 0,
+        "BUFFER_DEPTH": 0,
+        "MAX_BUFFER_DEPTH": 0,
+        "MAX_BUFFER_AGE_US": 0,
+        "ACQ_ELAPSED_US": 12375000,
+        "STREAM_ELAPSED_US": 12375000,
+        "MAX_TRANSPORT_POLL_US": 0
+      },
+      "session_errors": [],
+      "transport": {
+        "crc_errors": 0,
+        "format_errors": 0,
+        "code_errors": 0,
+        "frame_gaps": 0,
+        "slot_gaps": 0,
+        "resync_bytes": 0,
+        "ended": true
+      },
+      "recording": {
+        "active": false,
+        "queued": 0,
+        "error": null
+      },
+      "dma_errors": "0",
+      "health": {
+        "transport_errors": false,
+        "acquisition_losses": false,
+        "measured_anomalies": 26,
+        "code_errors": 0,
+        "session_verified": true
+      },
+      "recorded_samples": 123750,
+      "recorded_equals_received": true
+    }
+  }
+}

@@ -22,6 +22,12 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "app.h"
+#include "acquisition.h"
+#include "acquisition_dma.h"
+#include "tim.h"
+#include "timebase.h"
+#include "pair_diagnostic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -205,7 +211,16 @@ void SysTick_Handler(void)
 void EXTI1_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI1_IRQn 0 */
-
+  if (__HAL_GPIO_EXTI_GET_IT(INA_ALERT_Pin) != RESET)
+  {
+    uint32_t stamp = TIM2->CNT;
+    bool pin_low = (INA_ALERT_GPIO_Port->IDR & INA_ALERT_Pin) == 0U;
+    __HAL_GPIO_EXTI_CLEAR_IT(INA_ALERT_Pin);
+    Acq_AlertIRQ(stamp, pin_low);
+  }
+  /* A second HAL pending check could clear a NEW Native edge through the
+     empty weak callback instead of queueing it on the next IRQ entry. */
+  if (Acq_IsNativeSession() || PairDiag_IsBusy()) return;
   /* USER CODE END EXTI1_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(INA_ALERT_Pin);
   /* USER CODE BEGIN EXTI1_IRQn 1 */
@@ -233,14 +248,27 @@ void TIM3_IRQHandler(void)
 void OTG_FS_IRQHandler(void)
 {
   /* USER CODE BEGIN OTG_FS_IRQn 0 */
+  uint32_t usb_started = __HAL_TIM_GET_COUNTER(&htim2);
+  App_UsbIrq();
 
   /* USER CODE END OTG_FS_IRQn 0 */
   HAL_PCD_IRQHandler(&hpcd_USB_OTG_FS);
   /* USER CODE BEGIN OTG_FS_IRQn 1 */
+  App_RecordUsbIrqDuration(__HAL_TIM_GET_COUNTER(&htim2) - usb_started);
 
   /* USER CODE END OTG_FS_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
+void DMA2_Stream0_IRQHandler(void) { AcqDma_RxIRQ(); }
+void DMA2_Stream3_IRQHandler(void) { AcqDma_TxIRQ(); }
+void TIM2_IRQHandler(void)
+{
+  Timebase_UpdateIRQ();
+  PairDiag_MarkerIRQ();
+  if ((TIM2->SR & TIM_SR_CC1IF) != 0U &&
+      (TIM2->DIER & TIM_DIER_CC1IE) != 0U)
+    AcqDma_SettleIRQ();
+}
 
 /* USER CODE END 1 */

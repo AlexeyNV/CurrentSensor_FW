@@ -167,7 +167,7 @@ static int8_t CDC_Init_FS(void)
 static int8_t CDC_DeInit_FS(void)
 {
   /* USER CODE BEGIN 4 */
-  App_CdcTxComplete();
+  App_CdcDeInit();
   return (USBD_OK);
   /* USER CODE END 4 */
 }
@@ -230,7 +230,10 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
     break;
 
     case CDC_SET_CONTROL_LINE_STATE:
-
+    if (pbuf != NULL && length == 0U)
+    {
+      App_CdcLineState(((USBD_SetupReqTypedef *)pbuf)->wValue);
+    }
     break;
 
     case CDC_SEND_BREAK:
@@ -265,7 +268,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   /* USER CODE BEGIN 6 */
   App_CdcRx(Buf, *Len);
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
-  USBD_CDC_ReceivePacket(&hUsbDeviceFS);
+  App_CdcRxRearmResult(USBD_CDC_ReceivePacket(&hUsbDeviceFS) == USBD_OK);
   return (USBD_OK);
   /* USER CODE END 6 */
 }
@@ -296,6 +299,23 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
   result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
   /* USER CODE END 7 */
   return result;
+}
+
+/* Called from the main loop after the host drops DTR. The old IN transfer
+ * belongs to the closed serial session and must not pin CDC TxState. */
+uint8_t CDC_AbortTx_FS(void)
+{
+  USBD_CDC_HandleTypeDef *hcdc =
+      (USBD_CDC_HandleTypeDef *)hUsbDeviceFS.pClassData;
+  if (hUsbDeviceFS.dev_state != USBD_STATE_CONFIGURED ||
+      hUsbDeviceFS.pData == NULL) return USBD_OK;
+  if (hcdc == NULL || hcdc->TxState == 0U) return USBD_OK;
+  if (HAL_PCD_EP_Abort((PCD_HandleTypeDef *)hUsbDeviceFS.pData,
+                       CDC_IN_EP) != HAL_OK) return USBD_FAIL;
+  if (HAL_PCD_EP_Flush((PCD_HandleTypeDef *)hUsbDeviceFS.pData,
+                       CDC_IN_EP) != HAL_OK) return USBD_FAIL;
+  hcdc->TxState = 0U;
+  return USBD_OK;
 }
 
 /**

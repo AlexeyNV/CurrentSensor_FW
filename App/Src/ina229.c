@@ -2,6 +2,17 @@
 
 #define INA229_SPI_TIMEOUT_MS 10U
 
+static volatile bool dma_owned;
+static volatile uint32_t contention_count;
+static volatile uint32_t adc_write_attempts;
+static volatile uint32_t last_hal_status;
+
+void INA229_SetDmaOwner(bool owned) { dma_owned = owned; }
+bool INA229_DmaOwned(void) { return dma_owned; }
+uint32_t INA229_ContentionCount(void) { return contention_count; }
+uint32_t INA229_AdcWriteAttempts(void) { return adc_write_attempts; }
+uint32_t INA229_LastHalStatus(void) { return last_hal_status; }
+
 static INA229_Status INA229_Transfer(INA229_HandleTypeDef *handle,
                                       uint8_t *tx, uint8_t *rx, uint16_t length)
 {
@@ -13,8 +24,15 @@ static INA229_Status INA229_Transfer(INA229_HandleTypeDef *handle,
         return INA229_INVALID_ARG;
     }
 
+    if (dma_owned)
+    {
+        ++contention_count;
+        return INA229_BUSY;
+    }
+
     HAL_GPIO_WritePin(handle->cs_port, handle->cs_pin, GPIO_PIN_RESET);
     result = HAL_SPI_TransmitReceive(handle->hspi, tx, rx, length, INA229_SPI_TIMEOUT_MS);
+    last_hal_status = (uint32_t)result;
     HAL_GPIO_WritePin(handle->cs_port, handle->cs_pin, GPIO_PIN_SET);
 
     if (result == HAL_OK)
@@ -52,6 +70,7 @@ INA229_Status INA229_WriteReg16(INA229_HandleTypeDef *handle, uint8_t reg, uint1
     {
         return INA229_INVALID_ARG;
     }
+    if (reg == INA229_REG_ADC_CONFIG) ++adc_write_attempts;
     return INA229_Transfer(handle, tx, rx, sizeof(tx));
 }
 

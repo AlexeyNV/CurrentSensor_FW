@@ -1,0 +1,1225 @@
+{
+  "status": "PASS",
+  "font_scale": 1.0,
+  "scale_note": "Font stress in Qt, not a native Windows DPI certification",
+  "sections": [
+    {
+      "section": "График",
+      "presentation": "page",
+      "page_size": [
+        1346,
+        226
+      ],
+      "controls": [
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            8,
+            435,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            455,
+            8,
+            436,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            903,
+            8,
+            435,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            65,
+            435,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            455,
+            65,
+            436,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            903,
+            65,
+            435,
+            49
+          ]
+        },
+        {
+          "type": "QDoubleSpinBox",
+          "geometry": [
+            8,
+            122,
+            435,
+            56
+          ]
+        },
+        {
+          "type": "QDoubleSpinBox",
+          "geometry": [
+            455,
+            122,
+            436,
+            56
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            903,
+            122,
+            435,
+            56
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            186,
+            435,
+            32
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1366,
+        768
+      ],
+      "plot_height": 286,
+      "requested": [
+        1366,
+        768
+      ]
+    },
+    {
+      "section": "Курсоры",
+      "presentation": "inline",
+      "page_size": [
+        1100,
+        65
+      ],
+      "controls": [
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            8,
+            8,
+            353,
+            49
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            373,
+            8,
+            354,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            739,
+            8,
+            353,
+            49
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1366,
+        768
+      ],
+      "plot_height": 216,
+      "requested": [
+        1366,
+        768
+      ]
+    },
+    {
+      "section": "История",
+      "presentation": "page",
+      "page_size": [
+        1346,
+        86
+      ],
+      "controls": [
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            8,
+            435,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            455,
+            8,
+            436,
+            31
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            903,
+            8,
+            435,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            47,
+            435,
+            31
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            455,
+            47,
+            436,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            903,
+            47,
+            435,
+            31
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1366,
+        768
+      ],
+      "plot_height": 286,
+      "requested": [
+        1366,
+        768
+      ]
+    },
+    {
+      "section": "Прибор",
+      "presentation": "page",
+      "page_size": [
+        1346,
+        128
+      ],
+      "controls": [
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            8,
+            435,
+            52
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            455,
+            8,
+            436,
+            52
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            903,
+            8,
+            435,
+            52
+          ]
+        },
+        {
+          "type": "QLabel",
+          "geometry": [
+            8,
+            68,
+            435,
+            52
+          ]
+        },
+        {
+          "type": "QLabel",
+          "geometry": [
+            455,
+            68,
+            436,
+            52
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1366,
+        768
+      ],
+      "plot_height": 286,
+      "requested": [
+        1366,
+        768
+      ]
+    },
+    {
+      "section": "Запись",
+      "presentation": "page",
+      "page_size": [
+        1346,
+        205
+      ],
+      "controls": [
+        {
+          "type": "QLineEdit",
+          "geometry": [
+            8,
+            8,
+            435,
+            49
+          ]
+        },
+        {
+          "type": "QLineEdit",
+          "geometry": [
+            455,
+            8,
+            436,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            903,
+            8,
+            435,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            65,
+            435,
+            30
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            455,
+            65,
+            436,
+            30
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            903,
+            65,
+            435,
+            30
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            103,
+            435,
+            56
+          ]
+        },
+        {
+          "type": "QSpinBox",
+          "geometry": [
+            455,
+            103,
+            436,
+            56
+          ]
+        },
+        {
+          "type": "QSpinBox",
+          "geometry": [
+            903,
+            103,
+            435,
+            56
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            8,
+            167,
+            435,
+            30
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1366,
+        768
+      ],
+      "plot_height": 286,
+      "requested": [
+        1366,
+        768
+      ]
+    },
+    {
+      "section": "График",
+      "presentation": "inline",
+      "page_size": [
+        1428,
+        226
+      ],
+      "controls": [
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            8,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            483,
+            8,
+            462,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            957,
+            8,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            65,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            483,
+            65,
+            462,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            957,
+            65,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QDoubleSpinBox",
+          "geometry": [
+            8,
+            122,
+            463,
+            56
+          ]
+        },
+        {
+          "type": "QDoubleSpinBox",
+          "geometry": [
+            483,
+            122,
+            462,
+            56
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            957,
+            122,
+            463,
+            56
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            186,
+            463,
+            32
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1694,
+        1188
+      ],
+      "plot_height": 397,
+      "requested": [
+        1694,
+        1188
+      ]
+    },
+    {
+      "section": "Курсоры",
+      "presentation": "inline",
+      "page_size": [
+        1428,
+        65
+      ],
+      "controls": [
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            8,
+            8,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            483,
+            8,
+            462,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            957,
+            8,
+            463,
+            49
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1694,
+        1188
+      ],
+      "plot_height": 510,
+      "requested": [
+        1694,
+        1188
+      ]
+    },
+    {
+      "section": "История",
+      "presentation": "inline",
+      "page_size": [
+        1428,
+        86
+      ],
+      "controls": [
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            8,
+            463,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            483,
+            8,
+            462,
+            31
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            957,
+            8,
+            463,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            47,
+            463,
+            31
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            483,
+            47,
+            462,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            957,
+            47,
+            463,
+            31
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1694,
+        1188
+      ],
+      "plot_height": 495,
+      "requested": [
+        1694,
+        1188
+      ]
+    },
+    {
+      "section": "Прибор",
+      "presentation": "inline",
+      "page_size": [
+        1428,
+        128
+      ],
+      "controls": [
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            8,
+            463,
+            52
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            483,
+            8,
+            462,
+            52
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            957,
+            8,
+            463,
+            52
+          ]
+        },
+        {
+          "type": "QLabel",
+          "geometry": [
+            8,
+            68,
+            463,
+            52
+          ]
+        },
+        {
+          "type": "QLabel",
+          "geometry": [
+            483,
+            68,
+            462,
+            52
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1694,
+        1188
+      ],
+      "plot_height": 466,
+      "requested": [
+        1694,
+        1188
+      ]
+    },
+    {
+      "section": "Запись",
+      "presentation": "inline",
+      "page_size": [
+        1428,
+        205
+      ],
+      "controls": [
+        {
+          "type": "QLineEdit",
+          "geometry": [
+            8,
+            8,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QLineEdit",
+          "geometry": [
+            483,
+            8,
+            462,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            957,
+            8,
+            463,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            65,
+            463,
+            30
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            483,
+            65,
+            462,
+            30
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            957,
+            65,
+            463,
+            30
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            103,
+            463,
+            56
+          ]
+        },
+        {
+          "type": "QSpinBox",
+          "geometry": [
+            483,
+            103,
+            462,
+            56
+          ]
+        },
+        {
+          "type": "QSpinBox",
+          "geometry": [
+            957,
+            103,
+            463,
+            56
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            8,
+            167,
+            463,
+            30
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1694,
+        1188
+      ],
+      "plot_height": 412,
+      "requested": [
+        1694,
+        1188
+      ]
+    },
+    {
+      "section": "График",
+      "presentation": "inline",
+      "page_size": [
+        1654,
+        226
+      ],
+      "controls": [
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            558,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            1108,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            65,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            558,
+            65,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            1108,
+            65,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QDoubleSpinBox",
+          "geometry": [
+            8,
+            122,
+            538,
+            56
+          ]
+        },
+        {
+          "type": "QDoubleSpinBox",
+          "geometry": [
+            558,
+            122,
+            538,
+            56
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            1108,
+            122,
+            538,
+            56
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            186,
+            538,
+            32
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1920,
+        1080
+      ],
+      "plot_height": 322,
+      "requested": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "section": "Курсоры",
+      "presentation": "inline",
+      "page_size": [
+        1654,
+        65
+      ],
+      "controls": [
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            8,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            558,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            1108,
+            8,
+            538,
+            49
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1920,
+        1080
+      ],
+      "plot_height": 435,
+      "requested": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "section": "История",
+      "presentation": "inline",
+      "page_size": [
+        1654,
+        86
+      ],
+      "controls": [
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            8,
+            538,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            558,
+            8,
+            538,
+            31
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            1108,
+            8,
+            538,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            47,
+            538,
+            31
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            558,
+            47,
+            538,
+            31
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            1108,
+            47,
+            538,
+            31
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1920,
+        1080
+      ],
+      "plot_height": 420,
+      "requested": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "section": "Прибор",
+      "presentation": "inline",
+      "page_size": [
+        1654,
+        128
+      ],
+      "controls": [
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            8,
+            538,
+            52
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            558,
+            8,
+            538,
+            52
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            1108,
+            8,
+            538,
+            52
+          ]
+        },
+        {
+          "type": "QLabel",
+          "geometry": [
+            8,
+            68,
+            538,
+            52
+          ]
+        },
+        {
+          "type": "QLabel",
+          "geometry": [
+            558,
+            68,
+            538,
+            52
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1920,
+        1080
+      ],
+      "plot_height": 391,
+      "requested": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "section": "Запись",
+      "presentation": "inline",
+      "page_size": [
+        1654,
+        205
+      ],
+      "controls": [
+        {
+          "type": "QLineEdit",
+          "geometry": [
+            8,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QLineEdit",
+          "geometry": [
+            558,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            1108,
+            8,
+            538,
+            49
+          ]
+        },
+        {
+          "type": "QPushButton",
+          "geometry": [
+            8,
+            65,
+            538,
+            30
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            558,
+            65,
+            538,
+            30
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            1108,
+            65,
+            538,
+            30
+          ]
+        },
+        {
+          "type": "QComboBox",
+          "geometry": [
+            8,
+            103,
+            538,
+            56
+          ]
+        },
+        {
+          "type": "QSpinBox",
+          "geometry": [
+            558,
+            103,
+            538,
+            56
+          ]
+        },
+        {
+          "type": "QSpinBox",
+          "geometry": [
+            1108,
+            103,
+            538,
+            56
+          ]
+        },
+        {
+          "type": "QCheckBox",
+          "geometry": [
+            8,
+            167,
+            538,
+            30
+          ]
+        }
+      ],
+      "errors": [],
+      "main_size": [
+        1920,
+        1080
+      ],
+      "plot_height": 337,
+      "requested": [
+        1920,
+        1080
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "benchmark": "host synthetic CSF4, not hardware",
+  "python": "3.12.3",
+  "samples": 10000000,
+  "results": [
+    {
+      "method": "none",
+      "samples": 10000000,
+      "archive_bytes": 71250164,
+      "segment_count": 3,
+      "elapsed_s": 26.575936699999147,
+      "throughput_samples_s": 376280.246031754,
+      "throughput_mib_s": 2.5568036308024236,
+      "cpu_s": 27.453125,
+      "process_rss_peak_mib": 75.828125,
+      "open_ms": 10.203800000454066,
+      "overview_ms": 51.400700001977384,
+      "seek_median_ms": 0.9895499988488154,
+      "seek_p95_ms": 2.0225549989845604,
+      "stats_median_ms": 1.1100499996246072,
+      "stats_p95_ms": 2.089295000951097,
+      "size_ratio_to_plain": 1.0
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "gui_version": "0.1.2",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "hardware_test": false,
+  "cases": [
+    {
+      "samples": 100000,
+      "analysis_seconds": 0.05066450000003897,
+      "throughput_samples_per_second": 1973768.615103733,
+      "candidate_count": 1,
+      "complete": true,
+      "filtered_query_mean_ms": 1.1726939999988417,
+      "filtered_query_p95_ms": 1.988899999918203,
+      "rss_mb": 42.15234375
+    },
+    {
+      "samples": 600000,
+      "analysis_seconds": 0.30747229999997217,
+      "throughput_samples_per_second": 1951395.2964220007,
+      "candidate_count": 1,
+      "complete": true,
+      "filtered_query_mean_ms": 1.2492005000035533,
+      "filtered_query_p95_ms": 1.9296849999648202,
+      "rss_mb": 52.3671875
+    },
+    {
+      "samples": 3000000,
+      "analysis_seconds": 1.4792970999999397,
+      "throughput_samples_per_second": 2027990.1853387817,
+      "candidate_count": 1,
+      "complete": true,
+      "filtered_query_mean_ms": 1.2641435000000456,
+      "filtered_query_p95_ms": 2.055835000004435,
+      "rss_mb": 100.66015625
+    },
+    {
+      "samples": 10000000,
+      "analysis_seconds": 4.895878400000015,
+      "throughput_samples_per_second": 2042534.389743007,
+      "candidate_count": 1,
+      "complete": true,
+      "filtered_query_mean_ms": 1.2456054999978505,
+      "filtered_query_p95_ms": 2.043110000016666,
+      "rss_mb": 246.53125
+    }
+  ]
+}

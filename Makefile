@@ -37,6 +37,27 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 App/Src/app.c \
+App/Src/format64.c \
+App/Src/acquisition.c \
+App/Src/acquisition_core.c \
+App/Src/acquisition_alert_core.c \
+App/Src/alert_driven_core.c \
+App/Src/native_core.c \
+App/Src/spi_freeze_core.c \
+App/Src/spi_freeze.c \
+App/Src/pair_trace_core.c \
+App/Src/pair_experiment_core.c \
+App/Src/pair_diagnostic.c \
+App/Src/measurement_profile.c \
+App/Src/acquisition_dma.c \
+App/Src/acquisition_dma_core.c \
+App/Src/timebase.c \
+App/Src/timebase_core.c \
+App/Src/spi_control.c \
+App/Src/spi_speed_core.c \
+App/Src/anomaly_trace.c \
+App/Src/stream_core.c \
+App/Src/stream_transport.c \
 App/Src/calibration.c \
 App/Src/calibration_record.c \
 App/Src/calibration_storage.c \
@@ -192,6 +213,12 @@ vpath %.S $(sort $(dir $(ASMM_SOURCES)))
 
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# Keep the compile-time FW_BUILD in app.c tied to every produced ELF, including
+# incremental builds where only another source file changed.
+.PHONY: force_fw_build
+force_fw_build:
+$(BUILD_DIR)/app.o: force_fw_build
 
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@

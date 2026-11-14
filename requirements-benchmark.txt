@@ -1,0 +1,2 @@
+-r requirements.txt
+vispy>=0.14,<0.16

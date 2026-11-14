@@ -1,5 +1,16 @@
 # Build
 /build/
+/logs/
+/tests/build/
+__pycache__/
+*.pyc
+.venv/
+/recordings/
+/results/
+/release/
+/.vscode/
+/.pytest_cache/
+*.egg-info/
 out/
 Debug/
 Release/

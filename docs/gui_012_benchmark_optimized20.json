@@ -1,0 +1,125 @@
+{
+  "gui_version": "0.1.2",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.12.3",
+  "qt_platform": "windows",
+  "range_queries": [],
+  "live_mock": [
+    {
+      "timer_ms": 20,
+      "seconds": 5.009911999999986,
+      "graph_updates_per_second": 28.54341553304737,
+      "main_paints_per_second": 48.50384597573784,
+      "cpu_percent_one_core": 160.61908871852486,
+      "rss_mb": 197.75390625,
+      "stages": {
+        "prepare": {
+          "count": 143,
+          "mean_ms": 2.607193006988573,
+          "p95_ms": 3.9202599999953245,
+          "max_ms": 12.247200000047087
+        },
+        "main_submit": {
+          "count": 143,
+          "mean_ms": 0.4397006992991277,
+          "p95_ms": 0.8183199999621144,
+          "max_ms": 2.066000000013446
+        },
+        "overview_submit": {
+          "count": 4,
+          "mean_ms": 1.5376250000258551,
+          "p95_ms": 2.146045000012009,
+          "max_ms": 2.2192000000131884
+        },
+        "indicators": {
+          "count": 46,
+          "mean_ms": 0.04460869564582026,
+          "p95_ms": 0.048949999978731285,
+          "max_ms": 0.08690000004207832
+        },
+        "event_callback": {
+          "count": 144,
+          "mean_ms": 3.203981250006254,
+          "p95_ms": 5.188875000050072,
+          "max_ms": 13.338599999997314
+        }
+      },
+      "main_paint": {
+        "count": 243,
+        "mean_ms": 11.962706995888201,
+        "p95_ms": 15.866169999992508,
+        "max_ms": 24.55239999994774
+      },
+      "overview_paint": {
+        "count": 165,
+        "mean_ms": 1.2319709090888864,
+        "p95_ms": 2.008320000027196,
+        "max_ms": 5.272799999943345
+      },
+      "event_period": {
+        "count": 144,
+        "mean_ms": 34.679866666666705,
+        "p95_ms": 47.26218499994843,
+        "max_ms": 51.742200000035155
+      },
+      "acquisition": {
+        "samples": 51569,
+        "time_s": 5.1568,
+        "rate_hz": 10000.0,
+        "current_ma": 115.125,
+        "min_ma": 114.375,
+        "max_ma": 5216.0625,
+        "mean_ma": 137.33064559134363,
+        "std_ma": 80.06183433146619,
+        "initial_slot_gaps": 0,
+        "running_slot_gaps": 0,
+        "period_violations": 0,
+        "anomalies": 10,
+        "revision": 330,
+        "live_samples": 51569
+      },
+      "transport": {
+        "crc_errors": 0,
+        "format_errors": 0,
+        "code_errors": 0,
+        "frame_gaps": 0,
+        "slot_gaps": 0,
+        "resync_bytes": 0,
+        "ended": true
+      },
+      "spool_samples": 51569,
+      "spool_error": null,
+      "detector": {
+        "analyzed_samples": 51569,
+        "candidate_events": 15,
+        "complete": true,
+        "error": null
+      },
+      "spool_write": {
+        "count": 330,
+        "mean_ms": 0.6084848484819663,
+        "p95_ms": 2.7871050000385384,
+        "max_ms": 17.19300000002022
+      },
+      "export_wall": {
+        "count": 2,
+        "mean_ms": 113.7006499999984,
+        "p95_ms": 122.61546499999554,
+        "max_ms": 123.60599999999522
+      },
+      "exports": [
+        {
+          "type": "FULL_SESSION",
+          "samples": 19069,
+          "raw_statistics_verified": true
+        },
+        {
+          "type": "CURSORS",
+          "samples": 32829,
+          "raw_statistics_verified": true
+        }
+      ]
+    }
+  ],
+  "hardware_test": false
+}

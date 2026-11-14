@@ -1,0 +1,17 @@
+{
+  "benchmark": "host GUI DEMO; not STM32 hardware",
+  "seconds": 5.0,
+  "samples": 51100,
+  "archive_samples": 51100,
+  "rate_hz": 10220.0,
+  "archive_status": "COMPLETE",
+  "archive_bytes": 366184,
+  "segments": 1,
+  "archive_dropped": 0,
+  "transport_crc": 0,
+  "slot_gaps": 0,
+  "gui_draw_count": 164,
+  "gui_draw_fps": 32.8,
+  "gui_period_median_ms": 29.193600000326114,
+  "process_rss_peak_mib": 118.203125
+}

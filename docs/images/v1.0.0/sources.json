@@ -1,0 +1,18 @@
+{
+  "gui_version": "1.0.0",
+  "settings_source": "DEMO Qt geometry checks",
+  "live_source": "Hardware Native DMA FW 1.0.0",
+  "archive_source": "Hardware CSF4 v2 FW 1.0.0",
+  "analysis_source": "REPLAY of existing FW 0.5.0 ZERO_BEFORE",
+  "images": [
+    "117ma_timeline.png",
+    "archive.png",
+    "current_plot.png",
+    "cursors.png",
+    "main_live.png",
+    "settings_inline.png",
+    "settings_page.png",
+    "statistics.png",
+    "suspect.png"
+  ]
+}

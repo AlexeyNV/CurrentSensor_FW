@@ -1,0 +1,11 @@
+{
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "qt": "offscreen",
+  "backend": "vispy",
+  "pyqtgraph": "0.14.0",
+  "measurement": "synchronous paint/readback; offscreen throughput is not monitor presentation FPS",
+  "render": [],
+  "error": "RuntimeError: Using glBindFramebuffer with no OpenGL context."
+}

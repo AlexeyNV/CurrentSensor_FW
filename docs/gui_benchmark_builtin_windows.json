@@ -1,0 +1,71 @@
+{
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
+  "numpy": "2.5.4",
+  "qt": "windows",
+  "backend": "builtin",
+  "pyqtgraph": "0.14.0",
+  "measurement": "synchronous paint/readback; offscreen throughput is not monitor presentation FPS",
+  "render": [
+    {
+      "samples": 100000,
+      "backend": "builtin",
+      "frames": 30,
+      "cold_index_ms": 16.722500000469154,
+      "preparation_ms_mean": 0.2196466666039972,
+      "update_ms_mean": 10.34383000002587,
+      "update_ms_max": 17.557499999384163,
+      "zoom_pan_ms_p95": 15.02242499987004,
+      "rendered_updates_per_second": 94.29037223014062,
+      "cpu_percent_one_core": 93.30818085274332,
+      "rss_peak_mb": 122.13671875,
+      "exact_peak_indices_preserved": false,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    },
+    {
+      "samples": 600000,
+      "backend": "builtin",
+      "frames": 30,
+      "cold_index_ms": 16.234200000326382,
+      "preparation_ms_mean": 4.206169999937022,
+      "update_ms_mean": 10.561246666657098,
+      "update_ms_max": 23.79639999981009,
+      "zoom_pan_ms_p95": 23.997070000041276,
+      "rendered_updates_per_second": 67.52744653063564,
+      "cpu_percent_one_core": 101.99458069731426,
+      "rss_peak_mb": 156.12890625,
+      "exact_peak_indices_preserved": false,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    },
+    {
+      "samples": 3000000,
+      "backend": "builtin",
+      "frames": 30,
+      "cold_index_ms": 41.78359999968961,
+      "preparation_ms_mean": 3.3017966666799716,
+      "update_ms_mean": 11.234376666713311,
+      "update_ms_max": 23.16770000015822,
+      "zoom_pan_ms_p95": 28.186460000006242,
+      "rendered_updates_per_second": 68.59643687232415,
+      "cpu_percent_one_core": 100.03647043880606,
+      "rss_peak_mb": 271.375,
+      "exact_peak_indices_preserved": false,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    },
+    {
+      "samples": 10000000,
+      "backend": "builtin",
+      "frames": 30,
+      "cold_index_ms": 140.3303999995842,
+      "preparation_ms_mean": 5.045726666594419,
+      "update_ms_mean": 15.675956666685428,
+      "update_ms_max": 39.81079999994108,
+      "zoom_pan_ms_p95": 61.12423999984447,
+      "rendered_updates_per_second": 48.15932646294123,
+      "cpu_percent_one_core": 100.33193013112755,
+      "rss_peak_mb": 633.328125,
+      "exact_peak_indices_preserved": false,
+      "note": "builtin peak can move extremum timestamps; custom and VisPy use exact-time envelope"
+    }
+  ]
+}

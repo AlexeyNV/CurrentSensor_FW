@@ -1,0 +1,349 @@
+{
+  "platform": "Windows-10-10.0.19045-SP0",
+  "python": "3.12.3",
+  "qt_platform": "offscreen",
+  "range_queries": [
+    {
+      "samples": 100000,
+      "index_build_ms": 0.818000000435859,
+      "queries": {
+        "count": 500,
+        "mean_ms": 0.11277900003187824,
+        "p95_ms": 0.13701499919989146,
+        "max_ms": 0.2277000021422282
+      },
+      "rss_mb": 91.9296875,
+      "exact_raw_reference_passed": true
+    },
+    {
+      "samples": 600000,
+      "index_build_ms": 4.671300001064083,
+      "queries": {
+        "count": 500,
+        "mean_ms": 0.11376679999375483,
+        "p95_ms": 0.13820000021951265,
+        "max_ms": 0.234800001635449
+      },
+      "rss_mb": 105.33203125,
+      "exact_raw_reference_passed": true
+    },
+    {
+      "samples": 3000000,
+      "index_build_ms": 24.312199999258155,
+      "queries": {
+        "count": 500,
+        "mean_ms": 0.12003599986928748,
+        "p95_ms": 0.13770000077784061,
+        "max_ms": 0.18979999731527641
+      },
+      "rss_mb": 170.84375,
+      "exact_raw_reference_passed": true
+    },
+    {
+      "samples": 10000000,
+      "index_build_ms": 79.28460000039195,
+      "queries": {
+        "count": 500,
+        "mean_ms": 0.13777480011776788,
+        "p95_ms": 0.17248499952984267,
+        "max_ms": 0.261799999861978
+      },
+      "rss_mb": 357.80078125,
+      "exact_raw_reference_passed": true
+    }
+  ],
+  "live_mock": [
+    {
+      "timer_ms": 16,
+      "seconds": 5.0028942999997525,
+      "graph_updates_per_second": 36.978594570748605,
+      "main_paints_per_second": 61.364478557944985,
+      "cpu_percent_one_core": 157.72120150530444,
+      "rss_mb": 119.16015625,
+      "stages": {
+        "prepare": {
+          "count": 185,
+          "mean_ms": 3.398636216199422,
+          "p95_ms": 4.007039999851258,
+          "max_ms": 71.1157000005187
+        },
+        "main_submit": {
+          "count": 185,
+          "mean_ms": 0.39218810809354576,
+          "p95_ms": 0.4381400016427506,
+          "max_ms": 2.140199998393655
+        },
+        "overview_submit": {
+          "count": 5,
+          "mean_ms": 2.0759600010933354,
+          "p95_ms": 2.703240000846563,
+          "max_ms": 2.780700000585057
+        },
+        "indicators": {
+          "count": 46,
+          "mean_ms": 0.04272391292350063,
+          "p95_ms": 0.048624999180901796,
+          "max_ms": 0.049700000090524554
+        },
+        "event_callback": {
+          "count": 191,
+          "mean_ms": 3.820734031374855,
+          "p95_ms": 4.65135000013106,
+          "max_ms": 73.47809999919264
+        }
+      },
+      "main_paint": {
+        "count": 307,
+        "mean_ms": 9.745665146656037,
+        "p95_ms": 12.88803999996162,
+        "max_ms": 59.130899997398956
+      },
+      "overview_paint": {
+        "count": 198,
+        "mean_ms": 0.9653833333530458,
+        "p95_ms": 1.4816450000580468,
+        "max_ms": 6.550699999934295
+      },
+      "event_period": {
+        "count": 191,
+        "mean_ms": 26.240883246071043,
+        "p95_ms": 35.878450000382145,
+        "max_ms": 104.1499000020849
+      },
+      "acquisition": {
+        "samples": 51090,
+        "time_s": 5.1089,
+        "rate_hz": 10000.0,
+        "current_ma": 118.8125,
+        "min_ma": 114.375,
+        "max_ma": 5216.0625,
+        "mean_ma": 137.5216700919945,
+        "std_ma": 80.411731435859,
+        "initial_slot_gaps": 0,
+        "running_slot_gaps": 0,
+        "period_violations": 0,
+        "anomalies": 10,
+        "revision": 327,
+        "live_samples": 51090
+      },
+      "transport": {
+        "crc_errors": 0,
+        "format_errors": 0,
+        "code_errors": 0,
+        "frame_gaps": 0,
+        "slot_gaps": 0,
+        "resync_bytes": 0,
+        "ended": true
+      },
+      "spool_samples": 51090,
+      "spool_error": null,
+      "exports": [
+        {
+          "type": "FULL_SESSION",
+          "samples": 18590,
+          "raw_statistics_verified": true
+        },
+        {
+          "type": "CURSORS",
+          "samples": 32509,
+          "raw_statistics_verified": true
+        }
+      ]
+    },
+    {
+      "timer_ms": 20,
+      "seconds": 5.004141500001424,
+      "graph_updates_per_second": 37.36904721817854,
+      "main_paints_per_second": 61.74885342469074,
+      "cpu_percent_one_core": 155.49620249542875,
+      "rss_mb": 137.6875,
+      "stages": {
+        "prepare": {
+          "count": 187,
+          "mean_ms": 3.3554705882377744,
+          "p95_ms": 3.964939997604233,
+          "max_ms": 51.10849999982747
+        },
+        "main_submit": {
+          "count": 187,
+          "mean_ms": 0.3787598930710782,
+          "p95_ms": 0.43893999791180244,
+          "max_ms": 1.512499999080319
+        },
+        "overview_submit": {
+          "count": 4,
+          "mean_ms": 1.6184000014618505,
+          "p95_ms": 2.045035002811346,
+          "max_ms": 2.08780000320985
+        },
+        "indicators": {
+          "count": 46,
+          "mean_ms": 0.03996086983850388,
+          "p95_ms": 0.046800000745861325,
+          "max_ms": 0.05079999755253084
+        },
+        "event_callback": {
+          "count": 194,
+          "mean_ms": 3.7263711339581973,
+          "p95_ms": 4.5025450011962675,
+          "max_ms": 52.670500001113396
+        }
+      },
+      "main_paint": {
+        "count": 309,
+        "mean_ms": 9.842318446693971,
+        "p95_ms": 12.992520000989314,
+        "max_ms": 47.54440000033355
+      },
+      "overview_paint": {
+        "count": 186,
+        "mean_ms": 0.8589123656268491,
+        "p95_ms": 1.1179000002812245,
+        "max_ms": 4.70109999878332
+      },
+      "event_period": {
+        "count": 194,
+        "mean_ms": 25.856160824745174,
+        "p95_ms": 35.36068499997782,
+        "max_ms": 149.76039999964996
+      },
+      "acquisition": {
+        "samples": 51250,
+        "time_s": 5.1249,
+        "rate_hz": 10000.0,
+        "current_ma": 117.4375,
+        "min_ma": 114.375,
+        "max_ma": 5216.0625,
+        "mean_ma": 137.45693902439024,
+        "std_ma": 80.29448114286798,
+        "initial_slot_gaps": 0,
+        "running_slot_gaps": 0,
+        "period_violations": 0,
+        "anomalies": 10,
+        "revision": 328,
+        "live_samples": 51250
+      },
+      "transport": {
+        "crc_errors": 0,
+        "format_errors": 0,
+        "code_errors": 0,
+        "frame_gaps": 0,
+        "slot_gaps": 0,
+        "resync_bytes": 0,
+        "ended": true
+      },
+      "spool_samples": 51250,
+      "spool_error": null,
+      "exports": [
+        {
+          "type": "FULL_SESSION",
+          "samples": 18590,
+          "raw_statistics_verified": true
+        },
+        {
+          "type": "CURSORS",
+          "samples": 32510,
+          "raw_statistics_verified": true
+        }
+      ]
+    },
+    {
+      "timer_ms": 33,
+      "seconds": 5.0096587000007275,
+      "graph_updates_per_second": 28.34524435766041,
+      "main_paints_per_second": 60.2835478592496,
+      "cpu_percent_one_core": 150.02269515883205,
+      "rss_mb": 155.71875,
+      "stages": {
+        "prepare": {
+          "count": 142,
+          "mean_ms": 3.789135915468878,
+          "p95_ms": 4.419514999790406,
+          "max_ms": 49.11960000026738
+        },
+        "main_submit": {
+          "count": 142,
+          "mean_ms": 0.4117711267893573,
+          "p95_ms": 0.489210002342588,
+          "max_ms": 1.6961999972409103
+        },
+        "overview_submit": {
+          "count": 4,
+          "mean_ms": 1.8171749989051023,
+          "p95_ms": 2.819509997607383,
+          "max_ms": 3.0124999975669198
+        },
+        "indicators": {
+          "count": 46,
+          "mean_ms": 0.04339130432724588,
+          "p95_ms": 0.05365000106394291,
+          "max_ms": 0.09809999755816534
+        },
+        "event_callback": {
+          "count": 142,
+          "mean_ms": 4.368109859211139,
+          "p95_ms": 5.225320001591171,
+          "max_ms": 50.96219999904861
+        }
+      },
+      "main_paint": {
+        "count": 302,
+        "mean_ms": 9.715279801392604,
+        "p95_ms": 13.37352499813278,
+        "max_ms": 35.098299998935545
+      },
+      "overview_paint": {
+        "count": 180,
+        "mean_ms": 0.9750733333930839,
+        "p95_ms": 1.5015399991170824,
+        "max_ms": 5.730100001528626
+      },
+      "event_period": {
+        "count": 142,
+        "mean_ms": 35.24922183097375,
+        "p95_ms": 47.9121299989856,
+        "max_ms": 139.24409999890486
+      },
+      "acquisition": {
+        "samples": 51250,
+        "time_s": 5.1249,
+        "rate_hz": 10000.0,
+        "current_ma": 117.4375,
+        "min_ma": 114.375,
+        "max_ma": 5216.0625,
+        "mean_ma": 137.45693902439024,
+        "std_ma": 80.29448114286798,
+        "initial_slot_gaps": 0,
+        "running_slot_gaps": 0,
+        "period_violations": 0,
+        "anomalies": 10,
+        "revision": 327,
+        "live_samples": 51250
+      },
+      "transport": {
+        "crc_errors": 0,
+        "format_errors": 0,
+        "code_errors": 0,
+        "frame_gaps": 0,
+        "slot_gaps": 0,
+        "resync_bytes": 0,
+        "ended": true
+      },
+      "spool_samples": 51250,
+      "spool_error": null,
+      "exports": [
+        {
+          "type": "FULL_SESSION",
+          "samples": 18750,
+          "raw_statistics_verified": true
+        },
+        {
+          "type": "CURSORS",
+          "samples": 32520,
+          "raw_statistics_verified": true
+        }
+      ]
+    }
+  ],
+  "hardware_test": false
+}

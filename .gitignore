@@ -6,6 +6,8 @@ __pycache__/
 *.pyc
 .venv/
 /recordings/
+# Article planning materials are maintained outside this repository.
+/docs/HABR_MATERIALS.md
 /results/
 /release/
 /.vscode/
